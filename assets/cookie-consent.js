@@ -13,7 +13,7 @@ var CookieConsent = (function($) {
 
 	t.checkConsent = function() {
 		t.checkUserIP().then(function() {
-			// show consent form if the cookie was not previously set and not US
+			// show consent form if the cookie was not previously set and not excluded country
 			if (t.form.enabled && !Cookies.get('cookie_consent') && t.checkUserCountry()) {
 				t.showConsentForm();
 			}
@@ -49,10 +49,10 @@ var CookieConsent = (function($) {
 	};
 
 	t.checkUserCountry = function() {
-		// Do not show form for US
-		// if (t.country === 'US') {
-		// 	return false;
-		// }
+		// Do not show form excluded country (Canada)
+		if (t.country === 'CA') {
+			return false;
+		}
 
 		return true;
 	};
