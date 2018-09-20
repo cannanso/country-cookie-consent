@@ -1,7 +1,3 @@
-'use strict';
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 /*!
  * JavaScript Cookie v2.2.0
  * https://github.com/js-cookie/js-cookie
@@ -15,7 +11,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		define(factory);
 		registeredInModuleLoader = true;
 	}
-	if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+	if (typeof exports === 'object') {
 		module.exports = factory();
 		registeredInModuleLoader = true;
 	}
@@ -27,12 +23,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			return api;
 		};
 	}
-})(function () {
-	function extend() {
+}(function () {
+	function extend () {
 		var i = 0;
 		var result = {};
 		for (; i < arguments.length; i++) {
-			var attributes = arguments[i];
+			var attributes = arguments[ i ];
 			for (var key in attributes) {
 				result[key] = attributes[key];
 			}
@@ -40,8 +36,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		return result;
 	}
 
-	function init(converter) {
-		function api(key, value, attributes) {
+	function init (converter) {
+		function api (key, value, attributes) {
 			var result;
 			if (typeof document === 'undefined') {
 				return;
@@ -71,7 +67,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				} catch (e) {}
 
 				if (!converter.write) {
-					value = encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
 				} else {
 					value = converter.write(value, key);
 				}
@@ -92,7 +89,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 					}
 					stringifiedAttributes += '=' + attributes[attributeName];
 				}
-				return document.cookie = key + '=' + value + stringifiedAttributes;
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
 			}
 
 			// Read
@@ -118,7 +115,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 				try {
 					var name = parts[0].replace(rdecode, decodeURIComponent);
-					cookie = converter.read ? converter.read(cookie, name) : converter(cookie, name) || cookie.replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
 
 					if (this.json) {
 						try {
@@ -163,4 +162,4 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	}
 
 	return init(function () {});
-});
+}));
